@@ -1,7 +1,7 @@
 function init() {
 	
 	var   b2Vec2 = Box2D.Common.Math.b2Vec2
-	    ,  b2AABB = Box2D.Collision.b2AABB
+	    ,  b2AABB = Box2D.Collision.b2AAB
 	 	,	b2BodyDef = Box2D.Dynamics.b2BodyDef
 	 	,	b2Body = Box2D.Dynamics.b2Body
 	 	,	b2FixtureDef = Box2D.Dynamics.b2FixtureDef
@@ -24,7 +24,7 @@ function init() {
 	 var fixDef = new b2FixtureDef;
 	 fixDef.density = 1.0;  //  The density, usually in kg/m^2.
 	 fixDef.friction = 0.2;    //  The friction coefficient, usually in the range [0,1].
-	 fixDef.restitution = 0.2; // The restitution (elasticity) usually in the range [0,1].
+	 fixDef.restitution = 0.8; // The restitution (elasticity) usually in the range [0,1].
 	
 
 	 var bodyDef = new b2BodyDef;
@@ -167,7 +167,7 @@ function init() {
 	       }
 	    }
 	 
-	    world.Step(1 / 60, 10, 10);
+	    world.Step(1 / 60, 8, 3);
 	    
 	    //this draws the debug world Can be used with textures for testing
 	    world.DrawDebugData();
@@ -185,9 +185,9 @@ function init() {
 		     var pos = b.GetPosition();
 
 		     context.save();
-		     context.translate(pos.x * 20-20, pos.y * 20);
+		     context.translate(pos.x * 30, pos.y * 30);
 		     context.rotate((b.GetAngle())/15);
-		     context.drawImage(image, -25, -25);
+		     context.drawImage(image, -40, -40);
 		     context.restore();
 		  }
             //ground and walls are static bodies
