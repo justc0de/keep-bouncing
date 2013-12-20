@@ -22,9 +22,9 @@ function init() {
 	 
 	var fixDef = new b2FixtureDef;
 	 
-	fixDef.density = 1.0;		//  The density, usually in kg/m^2.
-	fixDef.friction = 0.2;    	//  The friction coefficient, usually in the range [0,1].
-	fixDef.restitution = 0.8; 	// The restitution (elasticity) usually in the range [0,1].
+	fixDef.density = 0.0;		//  The density, usually in kg/m^2.
+	fixDef.friction = 0.0;    	//  The friction coefficient, usually in the range [0,1].
+	fixDef.restitution = 1.0; 	// The restitution (elasticity) usually in the range [0,1].
 
 	var bodyDef = new b2BodyDef;
 	 
@@ -47,15 +47,15 @@ function init() {
 	//create ball
 	bodyDef.type = b2Body.b2_dynamicBody;
 	fixDef.shape = new b2CircleShape(1.0); // radius
-	fixDef.density = 0.5;  //  The density, usually in kg/m^2.
+	fixDef.density = 0.0;  //  The density, usually in kg/m^2.
 	bodyDef.position.x = 0;
     bodyDef.position.y = 0;
 	world.CreateBody(bodyDef).CreateFixture(fixDef);
 	
 	// load image, 50px x 50px
 	// TODO load image before drawing
-	var image = new Image();
-	image.src = "image.png";
+	//var image = new Image();
+	//image.src = "image.png";
 	//var image2 = new Image();
 	//image2.src = "image2.jpg";
 
@@ -159,7 +159,7 @@ function init() {
 	    		context.save();
 	    		context.translate(pos.x * 30, pos.y * 30);
 	    		context.rotate((b.GetAngle())/15);
-	    		context.drawImage(image, -40, -40);
+	    		//context.drawImage(image, -40, -40);
 	    		context.restore();
 	    	}
             
