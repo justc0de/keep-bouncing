@@ -47,11 +47,19 @@ function init() {
 	//create ball
 	bodyDef.type = b2Body.b2_dynamicBody;
 	fixDef.shape = new b2CircleShape(1.0); // radius
-	fixDef.density = 0.0;  //  The density, usually in kg/m^2.
 	bodyDef.position.x = 0;
-    bodyDef.position.y = 0;
+	bodyDef.position.y = 0;
 	world.CreateBody(bodyDef).CreateFixture(fixDef);
-	
+
+	//create player object 
+        bodyDef.type = b2Body.b2_kinematicBody;
+	fixDef.shape = new b2PolygonShape;
+	fixDef.shape.SetAsBox(0.5,3.5);
+	bodyDef.position.Set(2,7);
+	var bar = world.CreateBody(bodyDef);
+	bar.CreateFixture(fixDef);
+
+
 	// load image, 50px x 50px
 	// TODO load image before drawing
 	//var image = new Image();
@@ -86,6 +94,30 @@ function init() {
 	    mouseX = undefined;
 	    mouseY = undefined;
 	}, true);
+	
+	document.onkeydown = checkKey;
+	function checkKey(e) {
+
+	  e = e || window.event;
+
+	  if (e.keyCode == '38') {
+	    // up arrow
+	    console.log("up pressed");
+	  }
+	  if (e.keyCode == '40') {
+	    // down arrow
+	    console.log("down pressed");
+	  }
+	  if (e.keyCode == '37') {
+	    // left arrow
+	    console.log("left pressed");
+	  }
+	  if (e.keyCode == '39') {
+	    // right arrow
+	    console.log("right pressed");
+	  }
+      }
+      	
 	 
 	function handleMouseMove(e) {
 		mouseX = (e.clientX - canvasPosition.x) / 30;
@@ -161,6 +193,11 @@ function init() {
 	    		context.rotate((b.GetAngle())/15);
 	    		//context.drawImage(image, -40, -40);
 	    		context.restore();
+	    	}
+	    	
+		//player object
+	    	if (b.GetType() == b2Body.b2_kinematicBody){
+                     	
 	    	}
             
 	    	//ground and walls are static bodies
